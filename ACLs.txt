@@ -1,0 +1,29 @@
+ip access-group Servers-in in
+ip access-group Servers-out out
+
+no ip access-list extended Servers-in
+ip access-list extended Servers-in
+10 permit icmp 192.168.4.0 0.0.0.255 192.168.2.0 0.0.0.255
+11 permit tcp 192.168.4.0 0.0.0.255 192.168.3.0 0.0.0.255 eq 80
+12 permit tcp 192.168.4.0 0.0.0.255 192.168.2.0 0.0.0.255 eq 80
+13 permit udp 192.168.4.0 0.0.0.255 192.168.2.0 0.0.0.255 eq 67
+14 permit udp 192.168.4.0 0.0.0.255 192.168.2.0 0.0.0.255 eq 68
+15 permit udp 192.168.4.0 0.0.0.255 192.168.3.0 0.0.0.255 eq 67
+16 permit udp 192.168.4.0 0.0.0.255 192.168.3.0 0.0.0.255 eq 68
+18 permit udp 192.168.4.0 0.0.0.255 192.168.3.0 0.0.0.255 eq 53
+19 permit udp 192.168.4.0 0.0.0.255 192.168.2.0 0.0.0.255 eq 53
+21 permit udp 192.168.4.0 0.0.0.255 192.168.3.0 0.0.0.255 gt 1025
+22 permit udp 192.168.4.0 0.0.0.255 192.168.2.0 0.0.0.255 gt 1025
+23 permit tcp 192.168.4.0 0.0.0.255 192.168.3.0 0.0.0.255 gt 1025
+24 permit tcp 192.168.4.0 0.0.0.255 192.168.2.0 0.0.0.255 gt 1025
+exit
+
+no ip access-list extended Servers-out
+ip access-list extended Servers-out
+10 permit icmp 192.168.2.0 0.0.0.255 192.168.4.0 0.0.0.255
+11 permit tcp 192.168.3.0 0.0.0.255 192.168.4.0 0.0.0.255 eq 80
+12 permit tcp 192.168.2.0 0.0.0.255 192.168.4.0 0.0.0.255 eq 80
+13 permit udp 192.168.2.0 0.0.0.255 192.168.4.0 0.0.0.255 eq 53
+14 permit udp 192.168.3.0 0.0.0.255 192.168.4.0 0.0.0.255 eq 53
+exit
+
